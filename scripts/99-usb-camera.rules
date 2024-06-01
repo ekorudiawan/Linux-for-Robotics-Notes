@@ -1,0 +1,6 @@
+# Check ID_VENDOR_ID and ID_MODEL_ID
+# udevadm info --query=all --name=/dev/video0 | grep ID
+# ID_VENDOR_ID = idVendor
+# ID_MODEL_ID = idProduct
+# Device will be renamed as /dev/head_cam
+SUBSYSTEM=="video4linux", ATTR{idVendor}=="1234", ATTR{idProduct}=="5678", SYMLINK+="head_cam", RUN+="/home/ekorudiawan/start_usb_cam.sh"

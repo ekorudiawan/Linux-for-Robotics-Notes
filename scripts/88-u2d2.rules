@@ -1,0 +1,1 @@
+SUBSYSTEM=="tty", ATTRS{idVendor}=="1234", ATTRS{idProduct}=="5678", SYMLINK+="U2D2", RUN+="/home/ekorudiawan/setup_usb_serial.sh"
