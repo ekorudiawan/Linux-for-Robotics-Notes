@@ -50,6 +50,6 @@ ros2 run image_proc image_proc
 ```
 
 ## Isolating specific CPU cores for real-time process
-
+ref https://forums.developer.nvidia.com/t/allow-only-one-proccess-to-run-on-specific-core/157315/5
 ## Unsolve problem
 
