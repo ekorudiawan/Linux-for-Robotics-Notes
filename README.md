@@ -28,9 +28,7 @@ echo 1 | sudo tee /sys/bus/usb-serial/devices/ttyUSB0/latency_timer
 ```
 
 ## Autorun Script
-Run specific script when USB devices plugin
-```bash
-```
+Run specific script when USB devices plugin (see udev script)
 
 ## Calibrating Camera in ROS2
 Install package usb_cam on ROS2
@@ -49,7 +47,19 @@ Rectifying calibration file
 ros2 run image_proc image_proc
 ```
 
-## Isolating specific CPU cores for real-time process
-ref https://forums.developer.nvidia.com/t/allow-only-one-proccess-to-run-on-specific-core/157315/5
-## Unsolve problem
+## Isolating specific CPU cores for real-time performance
+### For General Linux with GRUB Bootloader
+Edit `/etc/default/grub' and set the CPU core to isolate.
+**Avoid isolate cpu 0**
+```bash
+GRUB_CMDLINE_LINUX="isolcpus=5,11 nohz_full=5,11"
+```
+* This command will isolate core number 5 and number 11 and disable interrupt for those core.
+* `isolcpus` will block other processes using this core. Check with the command `htop` to verify CPU usage.
+* `nohz_full` will disable the interrupt for the specific core.
+* Run specific process on isolate CPU with `taskset -c 5 python realtime_process.py`
 
+### For Jetson
+Edit in `/boot/extlinux/extlinux.conf`
+
+## Unsolve problem
